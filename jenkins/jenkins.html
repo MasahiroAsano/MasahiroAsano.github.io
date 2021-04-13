@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Jenkins備忘録</title>
+    </head>
+    <body>
+        <ul>
+            他PCからローカルLAN内のJenkinsにアクセスできないとき<br>
+            参考：<a href="https://support.borndigital.co.jp/hc/ja/articles/360002711593-Windows10%E3%81%A7%E7%89%B9%E5%AE%9A%E3%81%AE%E3%83%9D%E3%83%BC%E3%83%88%E3%82%92%E9%96%8B%E6%94%BE%E3%81%99%E3%82%8B" target="_blank" rel="noopener noreferrer">https://support.borndigital.co.jp/hc/ja/articles/360002711593-Windows10%E3%81%A7%E7%89%B9%E5%AE%9A%E3%81%AE%E3%83%9D%E3%83%BC%E3%83%88%E3%82%92%E9%96%8B%E6%94%BE%E3%81%99%E3%82%8B</a> 
+            <li>ファイアウォールの設定を開く</li>
+                「Windows Defender ファイアウォール」→「詳細設定」で「セキュリティが強化されたWindows Defender ファイアウォール」を起動する。<br>
+                <picture>
+                    <img src="./jenkins_firewall_open_00.png" alt="ファイアウォール画像" width="50%" height="50%"/>
+                </picture>
+            <li>ポートを開放する</li>
+                「受信の規則」から「新しい規則」でjenkinsにアクセスするためのポートを開放します。<br>
+                <picture>
+                    <img src="./jenkins_access_port_protocol.png" alt="ファイアウォール画像" width="30%" height="30%"/>
+                    <img src="./jenkins_access_port_operation.png" alt="ファイアウォール画像" width="30%" height="30%"/>
+                    <img src="./jenkins_access_port_name.png" alt="ファイアウォール画像" width="30%" height="30%"/>
+                </picture>
+            <li>https://<ローカルマシン名>:8080にアクセス</li>
+                Jenkinsのページにアクセスできます。
+        </ul>
+    </body>
+</html>
