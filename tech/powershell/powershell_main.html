@@ -1,0 +1,70 @@
+<html lang="ja">
+    <meta charset="utf-8">  
+    <title>powershell備忘録</title>
+    <body>
+        <script src="/jquery-3.6.0.min.js"></script>
+        <script>
+            $(function(){
+
+                $.getJSON("./powershell_main.json", function(data){
+                    console.log("include ok");
+
+                    var content = document.getElementById("content"); // 本文取得
+
+                    for(var i=0;i<data.length;++i)
+                    {
+                        {// 段落
+                            var para = document.createElement("p"); 
+                            para.innerText = data[i].p;
+                            para.classList.add("para");
+                            content.appendChild(para);
+                            { // 段落補足
+                                var paraList = data[i].list;
+                                if(paraList.length > 0)
+                                {
+                                    var ul = document.createElement("ul");
+                                    para.appendChild(ul);
+
+                                    // list作成
+                                    for(var listIdx = 0; listIdx < paraList.length; ++listIdx)
+                                    {
+                                        var listText = paraList[listIdx].title;
+                                        var li = document.createElement("li");
+                                        li.innerText = listText;
+                                        ul.appendChild(li);
+                                        // listの補足説明
+                                        var comment = paraList[listIdx].comment;
+                                        if(comment.length > 0)
+                                        {
+                                            var ele = document.createElement("div");
+                                            ele.innerText = comment;
+                                            li.appendChild(ele);
+                                        }
+                                        // 画像配置
+                                        var imgPathList = paraList[listIdx].img;
+                                        for(var imgIdx =0; imgIdx<imgPathList.length; ++imgIdx)
+                                        {
+                                            var pictureEle = document.createElement("picture");
+                                            var imgEle = document.createElement("img");
+                                            imgEle.src = imgPathList[imgIdx];
+                                            imgEle.width = imgEle.naturalWidth * 0.3;
+                                            imgEle.height = imgEle.naturalHeight * 0.3;
+                                            pictureEle.appendChild(imgEle);
+                                            li.appendChild(pictureEle);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                
+
+            });
+        </script> 
+
+        <div id="content"></div>
+
+
+    </body>
+</html>
